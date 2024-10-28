@@ -1,0 +1,13 @@
+body {
+    background-color: rgb(25, 25, 25);
+    color: rgb(220, 220, 220);
+}
+
+textarea {
+    background-color: rgb(48, 48, 48) !important;
+    color: rgb(176, 176, 176) !important;
+    border: 2px solid rgb(6, 6, 6) !important;
+    resize: none;
+    overflow: hidden;
+    min-height: 50px;
+}
