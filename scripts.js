@@ -117,6 +117,7 @@ function MatchAll(){
         UB.push([...e].reverse())
     })
     result = result.concat(findMatch(UB, "UB"))
+    console.log(UB)
     drawRes(result)
     return
 }
@@ -183,34 +184,37 @@ function highlight(e){
 }
 
 
-function findMatch(base, type){
-    let match = []
+function findMatch(base, type) {
+    let match = [];
     // [[start, end, row, type]]
     base.forEach((e, row) => {
         let pi = 0;
-        let tmp = [0, 0, row, type]
-        let i = 0
-        while(i < e.length){
-            if(e[i] == pat[pi]){
-                if(pi == 0){
-                    tmp[0] = i
+        let tmp = [0, 0, row, type];
+        let i = 0;
+        while (i < e.length) {
+            if (e[i] === pat[pi]) {
+                if (pi === 0) {
+                    tmp[0] = i;
                 }
-                if(pi == pat.length-1){
-                    tmp[1] = i
-                    match.push([...tmp])
-                    i = tmp[0] + 1
-                    pi = 0
-                    continue
+                if (pi === pat.length - 1) {
+                    tmp[1] = i;
+                    match.push([...tmp]);
+                    i = tmp[0] + 1;
+                    pi = 0;
+                    continue;
                 }
-                pi += 1
-                i += 1
-                continue
+                pi++;
+                i++;
+            } else {
+                if (pi !== 0) {
+                    pi = patt[pi - 1];
+                } else {
+                    i++;
+                }
             }
-            pi = pi - ((pi+1) - patt[pi+1])
-            i += 1
         }
-    })
-    return match
+    });
+    return match;
 }
 
 loadRemem()
